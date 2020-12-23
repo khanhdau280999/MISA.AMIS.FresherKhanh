@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MISA.AMIS.FresherKhanh", ".", "{60C17F90-450F-42F7-8FC4-2CDC71979304}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50596"
+		Debug.AspNetCompiler.PhysicalPath = "E:\MISA\Project\MISA.AMIS.FresherKhanh\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50596\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50596"
+		Release.AspNetCompiler.PhysicalPath = "E:\MISA\Project\MISA.AMIS.FresherKhanh\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50596\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50596"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60C17F90-450F-42F7-8FC4-2CDC71979304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C17F90-450F-42F7-8FC4-2CDC71979304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FEC423FE-76C8-48CC-82F7-42523D97C8A4}
+	EndGlobalSection
+EndGlobal
