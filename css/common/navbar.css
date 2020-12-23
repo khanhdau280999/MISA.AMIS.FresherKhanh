@@ -1,0 +1,79 @@
+﻿.navbar {
+    float: left;
+    width: 220px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+}
+
+    .navbar .logo-site {
+        display: flex;
+        width: 100%;
+        height: 60px;
+    }
+
+    .navbar .logo-box {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        top: 24px;
+        left: 24px;
+    }
+        /*Logo page*/
+        .navbar .logo-box .toggle-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url('/content/img/toggle.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .navbar .logo-box .amis-logo {
+            width: 100%;
+            height: 24px;
+            background-image: url('/content/img/cukcuk-logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+    .navbar .navbar-content {
+        width: 100%;
+    }
+
+        .navbar .navbar-content .nav-item {
+            display: flex;
+            padding-left: 24px;
+            height: 44px;
+            cursor: pointer;
+            line-height: 44px;
+        }
+
+            .navbar .navbar-content .nav-item:hover {
+                background-color: #e5e5e5;
+                color: #000000;
+            }
+
+.nav-item .nav-item-icon {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    margin-right: 10px;
+    background-size: contain;
+}
+
+.nav-item-icon-overviews {
+    background-image: url('/content/icon/dashboard.png');
+}
+
+.nav-icon-reports {
+    background-image: url('/content/icon/report.png');
+}
+
+.nav-icon-categories-employee {
+    background-image: url('/content/icon/dic-employee.png');
+}
+
+.nav-icon-config-system {
+    background-image: url('/content/icon/setting.png');
+}
