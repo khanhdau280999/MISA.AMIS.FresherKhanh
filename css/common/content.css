@@ -2,15 +2,17 @@
     position: absolute;
     top: 61px;
     left: 221px;
-    width: calc(100% - 221px);
-    height: calc(100vh - 61px);
+    width: calc(100% - 253px);
+    /*width: calc(100% - 221px);*/
+    /*height: calc(100vh - 61px);*/
     background-color: #ffffff;
     padding: 16px;
 }
 
 /*Page title*/
     .content .header-content {
-        padding: 16px;
+        padding: 8px 0 16px 0;
+        /*padding:16px;*/
         display:flex;
         align-items:center;
     }
@@ -22,18 +24,17 @@
         font-weight: bold;
     }
         .content .header-content .content-feature {
-            position:absolute;
-            right:40px;
+            position: absolute;
+            right: 16px;
+            /*right:40px;*/
+            /*default right:16px*/
         }
         .content .filter-bar{
 
         }
-/*Grid*/
-.content .grid{
 
-}
 
 /*Paging*/
-.content .paging-bar{
-
-}
+    .content .paging-bar {
+        height: 56px;
+    }

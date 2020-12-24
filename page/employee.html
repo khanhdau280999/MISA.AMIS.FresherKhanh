@@ -7,6 +7,7 @@
     <link href="/css/common/header.css" rel="stylesheet" />
     <link href="/css/common/input.css" rel="stylesheet" />
     <link href="/css/common/navbar.css" rel="stylesheet" />
+    <link href="/css/common/grid.css" rel="stylesheet" />
     <link href="/css/common/content.css" rel="stylesheet" />
     <link href="/css/common/button.css" rel="stylesheet" />
     <link href="/css/common/icon.css" rel="stylesheet" />
@@ -88,8 +89,99 @@
                 </button>
             </div>
         </div>
-        <div class="grid"></div>
-        <div class="paging-bar"></div>
+        <div class="grid grid-employee">
+            <table border="0" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Họ và tên</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Nhóm khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th max-width="100px">Địa chỉ</th>
+                        <th>Số tiền nợ</th>
+                        <th>Mã thẻ thành viên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NV00001</td>
+                        <td>Phú Quốc Khánh</td>
+                        <td>Nam</td>
+                        <td>28/09/1999</td>
+                        <td>Nhóm khách hàng</td>
+                        <td>0967204360</td>
+                        <td>Email</td>
+                        <td style="max-width:100px"><span style="width:100px">Thụy Khuê,Tây Hồ,Hà Nội 123345123</span></td>
+                        <td>Số tiền nợ</td>
+                        <td>Mã thẻ thành viên</td>
+                    </tr>
+                    <tr>
+                        <td>NV00002</td>
+                        <td>Nguyễn Văn Mạnh</td>
+                        <td>Nam</td>
+                        <td>28/09/1999</td>
+                        <td>Nhóm khách hàng</td>
+                        <td>0967204360</td>
+                        <td>Email</td>
+                        <td>HN</td>
+                        <td>Số tiền nợ</td>
+                        <td>Mã thẻ thành viên</td>
+                    </tr>
+                    <tr>
+                        <td>NV00001</td>
+                        <td>Phạm Mạnh Cường</td>
+                        <td>Nam</td>
+                        <td>28/09/1999</td>
+                        <td>Nhóm khách hàng</td>
+                        <td>0967204360</td>
+                        <td>Email</td>
+                        <td>HN</td>
+                        <td>Số tiền nợ</td>
+                        <td>Mã thẻ thành viên</td>
+                    </tr>
+                    <tr>
+                        <td>NV00001</td>
+                        <td>Trương Minh Hùng</td>
+                        <td>Nam</td>
+                        <td>28/09/1999</td>
+                        <td>Nhóm khách hàng</td>
+                        <td>0967204360</td>
+                        <td>Email</td>
+                        <td>HN</td>
+                        <td>Số tiền nợ</td>
+                        <td>Mã thẻ thành viên</td>
+                    </tr>
+                    <tr>
+                        <td>NV00001</td>
+                        <td>Lưu Tuấn Linh</td>
+                        <td>Nam</td>
+                        <td>28/09/1999</td>
+                        <td>Nhóm khách hàng</td>
+                        <td>0967204360</td>
+                        <td>Email</td>
+                        <td>HN</td>
+                        <td>Số tiền nợ</td>
+                        <td>Mã thẻ thành viên</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="paging-bar">
+            <div class="paging-record-info">
+                Hiển thị <b>1-10/1000</b> nhân viên
+            </div>
+            <div class="paging-option"></div>
+            <div class="paging-record-option">
+                <b>10</b> nhân viên/trang
+            </div>
+        </div>
     </div>
+    <script src="/lib/jquery-3.5.1.min.js"></script>
+    <script src="/js/common/common.js"></script>
+    <script src="/js/page/employee.js"></script>
 </body>
 </html>
