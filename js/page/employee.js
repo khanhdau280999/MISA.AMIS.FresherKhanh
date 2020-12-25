@@ -1,44 +1,53 @@
-﻿//$(document).ready(function () {
-//    loadData(1);
-//});
+﻿$(document).ready(function () {
+    loadData();
+});
 
-//function loadData() {
-//    //Lấy dữ liệu về:
-//    $.ajax({
-//        url: "https://api.manhnv.net/api/employees",
-//        method: "GET",
-//    }).done(function (res) {
-//        var data = res;
-//        $.each(data, function (index, item) {
-//            //var tr = $(`<tr>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">NV00001</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Phú Quốc Khánh</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Nam</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">28/09/1999</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Nhóm khách hàng</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">0967204360</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Email</span></div></td>
-//            //            <td style="max-width:100px"><div><span style="width:100px">Thụy Khuê,Tây Hồ,Hà Nội 123345123</span></div></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Số tiền nợ</span></div>></td>
-//            //            <td style="max-width:100px"><div><span span style="width:100px">Mã thẻ thành viên</span></div></td>
-//            //        </tr>`);
-//            var tr = $(`<tr>
-//                        <td style="max-width:100px"><span span style="width:100px">NV01</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Phú Quốc Khánh</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Nam</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">28/09/1999</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Nhóm khách hàng</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">0967204360</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Email</span></td>
-//                        <td style="max-width:100px"><span style="width:100px">Thụy Khuê,Tây Hồ,Hà Nội 123345123</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Số tiền nợ</span></td>
-//                        <td style="max-width:100px"><span span style="width:100px">Mã thẻ thành viên</span></td>
-//                    </tr>`);
-//            $('table tbody').append(tr);
-//        });
+class EmployeeJS {
+    constructor() {
+
+    }
+}
+
+/**
+ * Load dữ liệu
+ * CreatedBy: NVKhanh (25/12/2020)
+ * */
+function loadData() {
+    //Lấy dữ liệu về:
+    $.ajax({
+        url: "http://api.manhnv.net/api/employees",
+        method: "GET",
+    }).done(function (res) {
+        var data = res;
+        $.each(data, function (index, item) {
+            var dateOfBirth = item["DateOfBirth"];
+            var salary = item.Salary;
+            salary = formatMoney(salary);
+            dateOfBirth = formatDate(dateOfBirth);
+            var checkbox = `<input type="checkbox" />`;
+            if (item.Gender > 0) {
+                var checkbox = `<input type="checkbox" checked />`;
+            }
+            var tr = $(`<tr>
+                        <td><div><span>`+ item.EmployeeCode + `</span></div></td>
+                        <td><div><span>`+ item['FullName'] + `</span></div></td>
+                        <td><div class="text-align-center">`+ checkbox +`</div></td>
+                        <td><div><span>`+ dateOfBirth +`</span></div></td>
+                        <td><div><span>`+ item['PhoneNumber'] +`</span></div></td>
+                        <td><div><span>`+ item['Email'] +`</span></div></td>
+                        <td><div><span>`+ item['PositionName'] +`</span></div></td>
+                        <td><div><span>`+ item['DepartmentName'] + `</span></div></td>
+                        <td><div class="text-align-right"><span>`+ salary +`</span></div></td>
+                        <td style="max-width:100px"><div style="max-width:250px">`+ item['Address'] +`</div></td>
+                        <td><div><span>`+ item['WorkStatusName'] +`</span></div></td>
+
+                    </tr>`);
+            $('table tbody').append(tr);
+        });
         
-//    }).fail(function (res) {
+    }).fail(function (res) {
 
-//    })
-//    //binding dữ liệu lên table:
-//}
+    })
+    //binding dữ liệu lên table:
+}
+
