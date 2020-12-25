@@ -33,10 +33,13 @@
                         var formatType = $(th).attr('formatType');
                         switch (formatType) {
                             case "ddmmyyyy":
+                                td.addClass("text-align-center");
                                 value = formatDate(value);
                                 break;
                             case "MoneyVND":
+                                td.addClass("text-align-right");
                                 value = formatMoney(value);
+                                break;
                             default:
                                 break;
                         }

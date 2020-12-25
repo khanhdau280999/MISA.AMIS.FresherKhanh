@@ -26,6 +26,8 @@ function formatDate(date) {
  *
  */
 function formatMoney(money) {
-    var num = money.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-    return num;
+    if (money) {
+        return money.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    }
+    return "";
 }

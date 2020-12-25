@@ -1,6 +1,6 @@
 ﻿.m-btn {
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     background-color: #019160;
     border-radius: 4px;
     height: 40px;
@@ -9,9 +9,11 @@
     font-family: GoogleSans-Regular;
     padding-left: 16px;
     padding-right: 16px;
-    border:none;
-    outline:none;
-    cursor:pointer;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    min-width: 100px;
+    justify-content: center;
 }
 
     .m-btn:hover{
