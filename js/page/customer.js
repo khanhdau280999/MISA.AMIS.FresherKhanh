@@ -1,16 +1,15 @@
 ﻿$(document).ready(function () {
-    loadData();
+    loadData(1);
 });
-
 
 /**
  * Load dữ liệu
- * CreatedBy:NVKHANH (24/12/2021)
+ * CreatedBy: NVKhanh (25/12/2020)
  * */
 function loadData() {
     //Lấy dữ liệu về:
     $.ajax({
-        url: "https://api.pqkhanh.net/api/customer",
+        url: "http://api.manhnv.net/api/employees",
         method: "GET",
     }).done(function (res) {
         var data = res;
@@ -24,19 +23,17 @@ function loadData() {
                 var checkbox = `<input type="checkbox" checked />`;
             }
             var tr = $(`<tr>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item.CustomerCode +`</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item['FullName'] + `</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ checkbox + `</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ dateOfBirth +`</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item['GroupCustomer'] +`</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item['PhoneNumber'] +`</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item['Email'] +`</span></td>
-                        <td style="max-width:100px"><span style="width:100px">`+ item['Address'] +`</span></td>
-                        <td class="text-align-right" style="max-width:100px"><span span style="width:100px">`+ item['InDebt'] +`</span></td>
-                        <td style="max-width:100px"><span span style="width:100px">`+ item['MemberCode'] +`</span></td>
+                        <td><div><span>`+ item.EmployeeCode + `</span></div></td>
+                        <td><div><span>`+ item['FullName'] + `</span></div></td>
+                        <td><div class="text-align-center">`+ checkbox + `</div></td>
+                        <td><div><span>`+ dateOfBirth + `</span></div></td>
+                        <td><div><span>`+ item['PhoneNumber'] + `</span></div></td>
+                        <td><div><span>`+ item['Email'] + `</span></div></td>
+                        <td><div style="max-width:250px"><span>`+ item['Address'] + `</span></div></td>
                     </tr>`);
             $('table tbody').append(tr);
         });
+
     }).fail(function (res) {
 
     })
@@ -44,7 +41,7 @@ function loadData() {
 }
 
 /**
- * CreatedBy: NVKHANH (24/12/2020)
+ * CreatedBy: NVKHANH (25/12/2020)
  * Format dữ liệu ngày tháng sang ngày/tháng/năm
  * @param {any} date tham số có kiểu dữ liệu bất kỳ
  * 
@@ -61,15 +58,15 @@ function formatDate(date) {
         month = month < 10 ? '0' + month : month;
         return day + '/' + month + '/' + year;
     }
-   
+
 }
 
 /**
  * Hàm định dạng hiển thị tiền tệ
  * @param {Number} money Số tiền
- * CreatedBy: NVKHANH (24/12/2020)
+ * CreatedBy: NVKHANH (25/12/2020)
  */
 function formatMoney(money) {
-
-    return '$' + money.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    var num = money.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    return num;
 }
