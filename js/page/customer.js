@@ -3,7 +3,10 @@ $(document).ready(function () {
     new CustomerJS();
 });
 
-
+/**
+ * Class quản lý sự kiện cho trang Customer
+ * CreatedBy: NVKHANH(25/12/2020)
+ * */
 class CustomerJS extends BaseJS {
     constructor() { 
         super();

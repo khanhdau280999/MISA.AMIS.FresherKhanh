@@ -10,31 +10,40 @@
     padding:16px;
     font-size:16px;
 }
-.header .department-info select{
-    height:40px;
-    width:200px;
-    border:none;
-    font-size:16px;
-    outline:none;
-    cursor:pointer;
-}
+    .header .department-info select {
+        height: 40px;
+        width: 200px;
+        border: none;
+        font-size: 16px;
+        outline: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
 .header .department-info option{
     cursor:pointer;
 }
 
-/*.account-avatar {
-        width: 24px;
-        height: 24px;
-        margin-right: 16px;
-        background-size: contain;
-        background-image: url('/content/icon/avatar-default.png');
-        background-repeat: no-repeat;
-        align-self: center;
-    }
-.account-name {
-        margin-right: 16px;
-    }
-.account-option icon-option-default-16 {
-        font-size: 36px;
-        align-self: center;
-    }*/
+.header .account-info {
+    position: absolute;
+    right: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.header .account-info .account-avatar {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background-image: url('/content/icon/avatar-default.png');
+    background-size: contain;
+}
+
+.header .account-info .account-name {
+    padding: 10px;
+}
+
+.header .account-info .account-option {
+    height: 16px;
+    cursor: pointer
+}
