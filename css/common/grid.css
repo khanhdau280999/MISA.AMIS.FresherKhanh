@@ -1,7 +1,8 @@
 ﻿/*Grid*/
 .grid {
-    width:100%;
-    height:200px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 table th,td{
     border-bottom:1px solid #bbbbbb;
@@ -19,3 +20,10 @@ table th,td{
     text-overflow: ellipsis;
     white-space: nowrap;
 }*/
+.grid .grid-header {
+    height: 50px;
+}
+
+.grid .grid-content, .tablescroll_wrapper, .tablescroll {
+    height: calc(100% - 25px);
+}

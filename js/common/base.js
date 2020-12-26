@@ -3,10 +3,33 @@
         this.getDataUrl = null;
         this.setDataUrl();
         this.loadData();
+        this.initEvents();
     }
     setDataUrl() {
 
     }
+
+    initEvents() {
+        // Sự kiện click khi nhấn thêm mới:
+        $(`#btnAdd`).click(function () {
+            //Hiển thị dialog thông tin chi tiết:
+            dialogDetail.dialog(`open`);
+        })
+        // Load lại dữ liệu khi nhấn button nạp:
+        // Sự kiện click khi refresh thêm mới:
+        $(`#btnRefresh`).click(function () {
+            alert('load lại dữ liệu');
+        })
+        // Ẩn form chi tiết khi nhấn hủy:
+        $(`#btnCancel`).click(function () {
+            dialogDetail.dialog(`close`);
+        })
+        // Thực hiện lưu dữ liệu khi nhấn button [Lưu] trên form chi tiết:
+        $(`#btnSave`).click(function () {
+            dialogDetail.dialog(`close`);
+        })
+    }
+
 
     /**
      * Load dữ liệu
