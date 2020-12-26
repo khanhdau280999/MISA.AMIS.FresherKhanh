@@ -10,23 +10,30 @@
     }
 
     initEvents() {
+        var me = this;
         // Sự kiện click khi nhấn thêm mới:
-        $(`#btnAdd`).click(function () {
+        $('#btnAdd').click(function () {
             //Hiển thị dialog thông tin chi tiết:
-            dialogDetail.dialog(`open`);
+            dialogDetail.dialog('open');
         })
         // Load lại dữ liệu khi nhấn button nạp:
         // Sự kiện click khi refresh thêm mới:
-        $(`#btnRefresh`).click(function () {
-            alert('load lại dữ liệu');
+        $('#btnRefresh').click(function () {
+            me.loadData();
         })
         // Ẩn form chi tiết khi nhấn hủy:
-        $(`#btnCancel`).click(function () {
-            dialogDetail.dialog(`close`);
+        $('#btnCancel').click(function () {
+            dialogDetail.dialog('close');
         })
         // Thực hiện lưu dữ liệu khi nhấn button [Lưu] trên form chi tiết:
-        $(`#btnSave`).click(function () {
-            dialogDetail.dialog(`close`);
+        $('#btnSave').click(function () {
+            alert('Lưu dữ liệu');
+        })
+
+        // Hiển thị thông tin chi tiết khi nhấn đúp chuột chọn 1 bản ghi trên danh sách dữ liệu
+
+        $('table tbody').on('dblclick', 'tr', function () {
+            dialogDetail.dialog('open');
         })
     }
 
@@ -37,6 +44,7 @@
      * */
     loadData() {
         try {
+            $('table tbody').empty();
             // Lấy thông tin các cột dữ liệu
             var columns = $('table thead th');
             var getDataUrl = this.getDataUrl;
