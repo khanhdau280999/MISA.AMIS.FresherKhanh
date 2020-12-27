@@ -1,12 +1,12 @@
 ﻿
 $(document).ready(function () {
     new CustomerJS();
-    dialogDetail = $(".m-dialog").dialog({
+    dialogDetail = $(".m-dialog").dialog ({
         autoOpen: false,
         fluid: true,
         minWidth: 700,
         resizable: true,
-        position: ({ my: "center", at: "center" }),
+        position: ({ my: "center", at: "center", of: window }),
         modal: true
     });
 })
