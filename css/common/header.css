@@ -30,14 +30,17 @@
     align-items: center;
 }
 
-.header .account-info .account-avatar {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    background-image: url('/content/icon/avatar-default.png');
-    background-size: contain;
-}
+    .header .account-info .account-avatar {
+        width: 34px;
+        height: 44px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-image: url('/content/icon/avatarkhanh.jpg');
+        /*        background-image: url('/content/icon/IMG_9985.JPG');*/
+        /*background-image: url('/content/icon/avatar-default.png');*/
+        background-size: contain;
+        background-repeat:no-repeat;
+    }
 
 .header .account-info .account-name {
     padding: 10px;

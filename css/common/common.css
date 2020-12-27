@@ -4,3 +4,51 @@
 .text-align-center {
     text-align: center;
 }
+
+a {
+    text-decoration:none;
+    color:#000000;
+}
+.m-row{
+    margin-top:16px;
+
+}
+.m-lable{
+    bottom:4px;
+}
+
+.notice-required{
+    display:none;
+    position:absolute;
+    background-color:#FF4747;
+    color:#ffffff;
+    top:0;
+    padding:5px;
+    border-radius:5px;
+}
+
+.notice-required-abow{
+    display: block;
+    width:10px;
+    height:10px;
+    position:absolute;
+    background-color:#FF4747;
+    transform: rotate(45deg);
+    left:50%;
+}
+
+input[required]::after {
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background-color: #FF4747;
+    transform: rotate(45deg);
+    left: 50%;
+    content:"Thông tin";
+}
+
+input.border-red{
+    border:1px solid #FF4747;
+}
+ 
