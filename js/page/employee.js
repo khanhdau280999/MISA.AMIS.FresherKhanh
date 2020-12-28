@@ -1,6 +1,14 @@
 ﻿$(document).ready(function () {
     new EmployeeJS();
-});
+    dialogDetail = $(".m-dialog").dialog({
+        autoOpen: false,
+        fluid: true,
+        minWidth: 700,
+        resizable: true,
+        position: ({ my: "center", at: "center", of: window }),
+        modal: true
+    });
+})
 
 /**
  * Class quản lý sự kiện cho trang Employee
@@ -12,8 +20,9 @@ class EmployeeJS extends BaseJS {
         super();
         //this.loadData();
     }
-    setDataUrl() {
-        this.getDataUrl = "http://api.manhnv.net/api/employees";
+
+    setApiRouter() {
+        this.apiRouter = "/api/employees";
     }
     /**
      * Load dữ liệu
