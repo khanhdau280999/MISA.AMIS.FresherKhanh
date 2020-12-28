@@ -16,12 +16,11 @@ $(document).ready(function () {
  * CreatedBy: NVKHANH(25/12/2020)
  * */
 class CustomerJS extends BaseJS {
-    constructor() { 
+    constructor() {
         super();
     }
-
-    setDataUrl() {
-        this.getDataUrl = "http://api.manhnv.net/api/customers";
+    setApiRouter() {
+        this.apiRouter = "/api/customers";
     }
 /**
  * Load dữ liệu

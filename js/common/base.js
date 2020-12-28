@@ -1,10 +1,18 @@
 ﻿class BaseJS {
     constructor() {
-        this.getDataUrl = null;
-        this.setDataUrl();
-        this.loadData();
+        this.host = "http://api.manhnv.net";
+        this.apiRouter = null;
+        //this.getDataUrl = null;
+        //this.setDataUrl();
+        this.setApiRouter();
         this.initEvents();
+        this.loadData();
     }
+
+    setApiRouter() {
+
+    }
+
     setDataUrl() {
 
     }
@@ -13,8 +21,39 @@
         var me = this;
         // Sự kiện click khi nhấn thêm mới:
         $('#btnAdd').click(function () {
-            //Hiển thị dialog thông tin chi tiết:
-            dialogDetail.dialog('open');
+            try {
+                me.FormMode = 'Add';
+                //Hiển thị dialog thông tin chi tiết:
+                dialogDetail.dialog('open');
+                $('input').val(null);
+                // load dữ liệu cho các combobox:
+                var select = $('select#cbxCustomerGroup');
+                select.empty();
+                // lấy dữ liệu nhóm khách hàng:
+
+                $('.loading').show();
+                $.ajax({
+                    url: me.host + "/api/customergroups",
+                    method: "GET"
+                }).done(function (res) {
+                    if (res) {
+                        console.log(res);
+                        $.each(res, function (index, obj) {
+                            var option = $(`<option value="${obj.CustomerGroupId}">${obj.CustomerGroupName}</option>`);
+
+                            select.append(option);
+                            console.log(option);
+                        })
+                    }
+                    $('.loading').hide();
+                }).fail(function (res) {
+                    $('.loading').hide();
+                })
+            } catch (e) {
+                console.log(e);
+            }
+           
+
         })
         // Load lại dữ liệu khi nhấn button nạp:
         // Sự kiện click khi refresh thêm mới:
@@ -41,22 +80,33 @@
                 return;
             }
             // thu thập thông tin dữ liệu -> build thành object
-            var customer = {
-                "CustomerCode": $('#txtCustomerCode').val(),
-                "FullName": $('#txtFullName').val(),
-                "Address": $('#txtAddress').val(),
-                "DateOfBirth": $('#dtDateOfBirth').val(),
-                "Email": $('#txtEmail').val(),
-                "PhoneNumber": $('#txtPhoneNumber').val(),
-                "CustomerGroupId": "00000000-0000-0000-0000-000000000000",
-                "MemberCardCode": $('#txtMemberCardCode').val()
+            // Lấy tất cả các control nhập liệu:
+            var inputs = $('input[fieldName], select[fieldName]');
+            var entity = {};
+            $.each(inputs, function (index, input) {
+                var propertyName = $(this).attr('fieldName');
+                var value = $(this).val();
+                entity[propertyName] = value;
+                // Check với trường hợp input là radio, thì chỉ lấy value của input có attribute là checked
+                if ($(this).attr('type') == "radio") {
+                    if (this.checked) {
+                        entity[propertyName] = value;
+                    }
+                } else {
+                    entity[propertyName] = value;
+                }
+            })
+            var method = "POST";
+            if (me.FormMode == 'Edit') {
+                var method = "PUT";
+                entity.CustomerId = me.recordId;
             }
 
             // gọi service tương ứng thực hiện lưu dữ liệu:
             $.ajax({
-                url: 'http://api.manhnv.net/api/customers',
-                method: 'POST',
-                data: JSON.stringify(customer),
+                url: me.host + me.apiRouter,
+                method: method,
+                data: JSON.stringify(entity),
                 contentType: 'application/json'
             }).done(function (res) {
                 // Sau khi lưu thành công thì: 
@@ -76,6 +126,65 @@
         // Hiển thị thông tin chi tiết khi nhấn đúp chuột chọn 1 bản ghi trên danh sách dữ liệu
 
         $('table tbody').on('dblclick', 'tr', function () {
+            $(this).find('td').addClass('row-selected');
+            //Load form:
+            // load dữ liệu cho các combobox:
+            var select = $('select#cbxCustomerGroup');
+            select.empty();
+            // lấy dữ liệu nhóm khách hàng:
+
+            $('.loading').show();
+            $.ajax({
+                url: me.host + "/api/customergroups",
+                method: "GET"
+            }).done(function (res) {
+                if (res) {
+                    console.log(res);
+                    $.each(res, function (index, obj) {
+                        var option = $(`<option value="${obj.CustomerGroupId}">${obj.CustomerGroupName}</option>`);
+
+                        select.append(option);
+                        console.log(option);
+                    })
+                }
+                $('.loading').hide();
+            }).fail(function (res) {
+                $('.loading').hide();
+            })
+
+            me.FormMode = 'Edit';
+            // Lấy khóa chính của bản ghi:
+            var recordId = $(this).data('recordId');
+            me.recordId = recordId;
+            // Gọi service lấy thông tin chi tiết qua Id:
+            $.ajax({
+                url: me.host + me.apiRouter + `/${recordId}`,
+                method: "GET"
+            }).done(function (res) {
+                // Binding dữ liệu lên form chi tiết:
+                console.log(res);
+
+                // Lấy tất cả các control nhập liệu:
+                var inputs = $('input[fieldName], select[fieldName]');
+                var entity = {};
+                $.each(inputs, function (index, input) {
+                    var propertyName = $(this).attr('fieldName');
+                    var value = res[propertyName];
+                    $(this).val(value);
+                    entity[propertyName] = value;
+                    // Check với trường hợp input là radio, thì chỉ lấy value của input có attribute là checked
+                    //if ($(this).attr('type') == "radio") {
+                    //    if (this.checked) {
+                    //        entity[propertyName] = value;
+                    //    }
+                    //} else {
+                    //    entity[propertyName] = value;
+                    //}
+                })
+            }).fail(function (res) {
+
+            })
+            // Build lên form chi tiết :
             dialogDetail.dialog('open');
         })
 
@@ -123,19 +232,22 @@
      * CreatedBy: NVKHANH (25/12/2020)
      * */
     loadData() {
+        var me = this;
         try {
             $('table tbody').empty();
             // Lấy thông tin các cột dữ liệu
             var columns = $('table thead th');
             var getDataUrl = this.getDataUrl;
-
+            $('.loading').show();
             //Lấy dữ liệu về:
             $.ajax({
-                url: getDataUrl,
+                url: me.host + me.apiRouter,
                 method: "GET",
+                async: true,
             }).done(function (res) {
                 $.each(res, function (index, obj) {
                     var tr = $(`<tr></tr>`);
+                    $(tr).data('recordId', obj.CustomerId);
                     // Lấy thông tin dữ liệu sẽ map tương ứng với các cột:
                     $.each(columns, function (index, th) {
                         var td = $(`<td><div><span></span></div></td>`);
@@ -158,6 +270,7 @@
                         $(tr).append(td);
                     })
                     $('table tbody').append(tr);
+                    $('.loading').hide();
                 })
 
             }).fail(function (res) {
