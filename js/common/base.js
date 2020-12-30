@@ -13,10 +13,6 @@
 
     }
 
-    setDataUrl() {
-
-    }
-
     initEvents() {
         var me = this;
         // Sự kiện click khi nhấn thêm mới:
@@ -33,14 +29,19 @@
         // Thực hiện lưu dữ liệu khi nhấn button [Lưu] trên form chi tiết:
         $('#btnSave').click(me.btnSaveOnClick.bind(me));
 
+        //$('#btnDelete').click(me.btnDeleteOnClick.bind(me));
+
         // Hiển thị thông tin chi tiết khi nhấn đúp chuột chọn 1 bản ghi trên danh sách dữ liệu
 
         $('table tbody').on('dblclick', 'tr', function () {
             $(this).find('td').addClass('row-selected');
             //Load form:
             // load dữ liệu cho các combobox:
+            //me.FormMode = 'Edit';
+            //var recordId = $(this).data('recordId');
+            //me.recordId = recordId;
             var selects = $('select[fieldName]');
-            select.empty();
+            selects.empty();
             $.each(selects, function (index, select) {
                 // lấy dữ liệu nhóm khách hàng:
                 var api = $(select).attr('api');
@@ -65,6 +66,8 @@
                     $('.loading').hide();
                 })
             })
+            
+
            
 
             me.FormMode = 'Edit';
@@ -250,7 +253,7 @@
         // validate dữ liệu:
         var inputValidates = $('input[required], input[type="email"]');
         $.each(inputValidates, function (index, input) {
-            var value = $(input).val();
+            //var value = $(input).val();
 
             $(input).trigger('blur');
         })
@@ -301,4 +304,6 @@
 
         })
     }
+
+    //btnDeleteOnClick()
 }

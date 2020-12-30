@@ -48,6 +48,14 @@
     background-position:center;
 /*    margin-right:24px;*/
 }
+.m-btn-delete {
+    background-image: url('/content/icon/delete (2).png');
+    background-repeat: no-repeat;
+    width: 40px;
+    background-position: center;
+    /*    margin-right:24px;*/
+}
+
 
 .btn-pagenumber {
     width: 30px;
