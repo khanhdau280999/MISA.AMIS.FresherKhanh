@@ -29,7 +29,15 @@
         // Thực hiện lưu dữ liệu khi nhấn button [Lưu] trên form chi tiết:
         $('#btnSave').click(me.btnSaveOnClick.bind(me));
 
+        $("table").on("click", "tbody tr", this.rowOnClick);
+
+        $("#btnDelete").on("click", me.btnDeleteOnClick.bind(me));
         //$('#btnDelete').click(me.btnDeleteOnClick.bind(me));
+        //$('btnDelete').click(function (row) {
+        //    var i = row.parentNode.parentNode.rowIndex;
+        //    document.getElementById('table tbody').deleteRow(i);
+            
+        //})
 
         // Hiển thị thông tin chi tiết khi nhấn đúp chuột chọn 1 bản ghi trên danh sách dữ liệu
 
@@ -67,9 +75,6 @@
                 })
             })
             
-
-           
-
             me.FormMode = 'Edit';
             // Lấy khóa chính của bản ghi:
             var recordId = $(this).data('recordId');
@@ -280,11 +285,21 @@
                 entity[propertyName] = value;
             }
         })
+        //var method = "POST";
+        //if (me.FormMode == 'Edit') {
+        //    var method = "PUT";
+        //    entity.CustomerId = me.recordId;
+        //}
         var method = "POST";
         if (me.FormMode == 'Edit') {
             var method = "PUT";
             entity.CustomerId = me.recordId;
+        } else if (me.FormMode == 'Delete') {
+            var method = "DELETE";
         }
+        //if (me.FormMode == 'Delete') {
+        //    var method = "Delete";
+        //}
 
         // gọi service tương ứng thực hiện lưu dữ liệu:
         $.ajax({
@@ -305,5 +320,61 @@
         })
     }
 
-    //btnDeleteOnClick()
+    rowOnClick(sender) {
+        this.classList.add("row-selected");
+        $(this).siblings().removeClass("row-selected");
+    }
+    btnDeleteOnClick(sender) {
+        var me = this;
+        //me.FormMode = 'Delete';
+        var formMode = sender.data;
+         // Lấy khóa chính của bản ghi:
+        //var recordId = $(this).data('recordId');
+        //me.recordId = recordId;
+        var rowSelected = $('tr.row-selected');
+        if (rowSelected && rowSelected.length == 1) {
+            var recordId = $('tr.row-selected').data('id');
+            $.ajax({
+                url: me.host + me.apiRouter + `/${recordId}`,
+                method: "DELETE",
+            }).done(function (res) {
+                // Thực hiện binding dữ liệu lên form chi tiết:
+                me.loadData();
+            }).fail(function () {
+                alert("Lỗi");
+            });
+        }
+    
+    //    // Gọi service lấy thông tin chi tiết qua Id:
+    //    $.ajax({
+    //        url: me.host + me.apiRouter + `/${recordId}`,
+    //        method: "GET"
+    //    }).done(function (res) {
+    //        // Binding dữ liệu lên form chi tiết:
+    //        console.log(res);
+
+    //        // Lấy tất cả các control nhập liệu:
+    //        var inputs = $('input[fieldName], select[fieldName]');
+    //        var entity = {};
+    //        $.each(inputs, function (index, input) {
+    //            var propertyName = $(this).attr('fieldName');
+    //            var value = res[propertyName];
+    //            $(this).val(value);
+    //            entity[propertyName] = value;
+    //            // Check với trường hợp input là radio, thì chỉ lấy value của input có attribute là checked
+    //            //if ($(this).attr('type') == "radio") {
+    //            //    if (this.checked) {
+    //            //        entity[propertyName] = value;
+    //            //    }
+    //            //} else {
+    //            //    entity[propertyName] = value;
+    //            //}
+    //        })
+    //    }).fail(function (res) {
+
+    //    })
+    //    // Build lên form chi tiết :
+    //    dialogDetail.dialog('open');
+    //})
+    }
 }
